@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: read #This is required for actions/checkout
 
@@ -28,7 +28,7 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -51,13 +51,13 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_855500295280479882468059FF84EAF6 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_68FA3D87DFA44B32AFD060E2FB5E2547 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_51F96A4CE7E84C6891E793C7462C473C }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_256DB408123C492FBBD6268C1CBCE3FF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_1223D232E4D9436B9C2DCF1C07627B6B }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FBCD683410FE4826BD9F1324CE12F604 }}
 
       - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
           app-name: 'photosharestorag'
           slot-name: 'Production'
